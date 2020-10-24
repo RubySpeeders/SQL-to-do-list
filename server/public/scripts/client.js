@@ -11,7 +11,7 @@ function readyUp() {
 function handleDeleteTask() {
   //retrieve id of task
   const taskId = $(this).data('id');
-  console.log('in delete', taskId);
+  //console.log('in delete', taskId);
   //run DELETE route
   deleteTask(taskId);
 }
