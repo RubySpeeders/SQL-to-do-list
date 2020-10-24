@@ -39,6 +39,21 @@ router.post('/', (req, res) => {
 
 //UPDATE route
 
-//DELETE route
+//DELETE route (deletes a task from the db)
+router.delete('/:id', (req, res) => {
+  const taskId = req.params.id;
+  const queryText = `DELETE FROM "todo" WHERE id=$1;`;
+  const queryArrayData = [taskId];
+
+  pool
+    .query(queryText, queryArrayData)
+    .then((dbResponse) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
