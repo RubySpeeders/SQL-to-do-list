@@ -37,7 +37,22 @@ router.post('/', (req, res) => {
     });
 });
 
-//UPDATE route
+//UPDATE route (updates the task from incomplete to complete)
+router.put('/status/:id', (req, res) => {
+  const newTaskInfo = req.body;
+  const queryText = `UPDATE "todo" SET status=$1 WHERE id=$2;`;
+  const queryArray = [newTaskInfo.status, req.params.id];
+
+  pool
+    .query(queryText, queryArray)
+    .then((dbResponse) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
 
 //DELETE route (deletes a task from the db)
 router.delete('/:id', (req, res) => {
