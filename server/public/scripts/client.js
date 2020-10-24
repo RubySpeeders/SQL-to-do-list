@@ -1,9 +1,19 @@
 $(document).ready(readyUp);
 
 function readyUp() {
-  //click listener for submit button
+  //click listeners
   $('#js-addBtn').on('click', handleClickAdd);
+  $('.js-tasks').on('click', '.js-delete', handleDeleteTask);
+  //run GET function to display tasks on page load
   getTasks();
+}
+
+function handleDeleteTask() {
+  //retrieve id of task
+  const taskId = $(this).data('id');
+  console.log('in delete', taskId);
+  //run DELETE route
+  deleteTask(taskId);
 }
 
 function handleClickAdd() {
@@ -44,6 +54,22 @@ function postTask(obj) {
     });
 }
 
+//DELETE function to delete task
+function deleteTask(id) {
+  $.ajax({
+    type: 'DELETE',
+    url: `/todo/${id}`,
+  })
+    .then((deleteMessage) => {
+      //db is updated, update DOM
+      getTasks();
+    })
+    .catch((err) => {
+      console.log(err);
+      alert('yikes');
+    });
+}
+
 function render(response) {
   $('.js-tasks').empty();
   for (let task of response) {
@@ -51,7 +77,7 @@ function render(response) {
       `<tr>
         <td>${task.task}</td>
         <td><button>DONE</button></td>
-        <td><button>DELETE</button></td>
+        <td><button class="js-delete" data-id="${task.id}">DELETE</button></td>
       </tr>`
     );
   }
