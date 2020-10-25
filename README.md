@@ -6,6 +6,10 @@ SQL To-Do List
 
 I built a to-do list application, using a full stack (see # Built with for a full list of frameworks and technologies).
 
+# Screenshot
+
+<img width="557" alt="Screen Shot 2020-10-25 at 6 35 19 PM" src="https://user-images.githubusercontent.com/69406113/97122093-2cd4b900-16f1-11eb-99de-f7e0ee3468cd.png">
+
 # Installation
 
 1. Create a database named 'weekend-to-do-app'.
@@ -15,9 +19,9 @@ I built a to-do list application, using a full stack (see # Built with for a ful
 # Usage
 
 1. Type in a task you would like to add to your to do list.
-2. Click on Add Task to add to the list, both on the DOM and the database.
+2. Click on Add Task to add to the list, both on the webpage and the database.
 3. Once finished with the task, click Completed button. If you change your mind, you can click the button Incomplete to change it back to an unfinished task.
-4. Click Delete to delete the task from the DOM and the database.
+4. Click Delete to delete the task from the webpage and the database.
 
 # Built with
 

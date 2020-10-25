@@ -4,8 +4,8 @@ const pool = require('../modules/pool');
 
 //GET route (gets list of tasks from db to client)
 router.get('/', (req, res) => {
-  const queryText = 'SELECT * FROM "todo" ORDER BY "id" DESC;';
-  //for stretch goal, you would say
+  const queryText = 'SELECT * FROM "todo" ORDER BY "id";';
+  //for stretch goal, you would say ORDER BY "id" DESC to reverse the order of todos. In MY mind, however, I don't want to forget an incomplete task I have had on the list for a long time! I would want it at the top reminding me to finish it. So I would not have that feature in my application.
 
   pool
     .query(queryText)

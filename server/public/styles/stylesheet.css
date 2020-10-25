@@ -2,9 +2,15 @@ html,
 body {
   background-color: #31bae7;
   font-family: 'Cabin', serif;
+  margin: 10px;
 }
 
-h2 {
+main {
+  padding-top: 30px;
+}
+
+label,
+th {
   text-transform: uppercase;
 }
 
@@ -14,4 +20,16 @@ h2 {
 
 .btnColour {
   background-color: #31e78c;
+}
+
+.inputArea {
+  margin: 10px;
+}
+
+table {
+  margin: 10px;
+}
+
+.taskInput {
+  width: 300px;
 }
