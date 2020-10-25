@@ -4,7 +4,8 @@ const pool = require('../modules/pool');
 
 //GET route (gets list of tasks from db to client)
 router.get('/', (req, res) => {
-  const queryText = 'SELECT * FROM "todo" ORDER BY "id";';
+  const queryText = 'SELECT * FROM "todo" ORDER BY "id" DESC;';
+  //for stretch goal, you would say
 
   pool
     .query(queryText)
