@@ -37,6 +37,10 @@ function handleClickAdd() {
   postTask(taskObj);
 }
 
+function clearField() {
+  $('#js-task').val('');
+}
+
 //GET function to get the list of tasks from db
 function getTasks() {
   $.ajax({
@@ -62,6 +66,7 @@ function postTask(obj) {
       //clearForm();
       //db is updated, update DOM
       getTasks();
+      clearField();
     })
     .catch((err) => {
       console.log(err);
