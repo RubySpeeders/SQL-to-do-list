@@ -13,13 +13,12 @@ function handleCompleteTask() {
   //retrieve id of task
   const taskId = $(this).data('id');
   let taskStatus = $(this).data('status');
-  console.log(taskId, taskStatus);
-  if (taskStatus === true) {
+  //console.log(taskId, taskStatus);
+  if (taskStatus) {
     taskStatus = false;
   } else {
     taskStatus = true;
   }
-  console.log(taskId, taskStatus);
   completeTask(taskId, taskStatus);
 }
 
@@ -103,12 +102,22 @@ function completeTask(id, status) {
 function render(response) {
   $('.js-tasks').empty();
   for (let task of response) {
-    $('.js-tasks').append(
-      `<tr>
-        <td>${task.task}</td>
+    if (task.status) {
+      $('.js-tasks').append(
+        `<tr class="js-tr">
+          <td class="js-tdTask strikeThrough">${task.task}</td>
+          <td><button class="js-completeBtn" data-status="${task.status}" data-id="${task.id}">NOT DONE!</button></td>
+          <td><button class="js-deleteBtn" data-id="${task.id}">DELETE</button></td>
+      </tr>`
+      );
+    } else if (task.status === false) {
+      $('.js-tasks').append(
+        `<tr class="js-tr">
+        <td class="js-tdTask">${task.task}</td>
         <td><button class="js-completeBtn" data-status="${task.status}" data-id="${task.id}">DONE</button></td>
         <td><button class="js-deleteBtn" data-id="${task.id}">DELETE</button></td>
       </tr>`
-    );
+      );
+    }
   }
 }
