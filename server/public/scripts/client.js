@@ -3,9 +3,24 @@ $(document).ready(readyUp);
 function readyUp() {
   //click listeners
   $('#js-addBtn').on('click', handleClickAdd);
-  $('.js-tasks').on('click', '.js-delete', handleDeleteTask);
+  $('.js-tasks').on('click', '.js-deleteBtn', handleDeleteTask);
+  $('.js-tasks').on('click', '.js-completeBtn', handleCompleteTask);
   //run GET function to display tasks on page load
   getTasks();
+}
+
+function handleCompleteTask() {
+  //retrieve id of task
+  const taskId = $(this).data('id');
+  let taskStatus = $(this).data('status');
+  console.log(taskId, taskStatus);
+  if (taskStatus === true) {
+    taskStatus = false;
+  } else {
+    taskStatus = true;
+  }
+  console.log(taskId, taskStatus);
+  completeTask(taskId, taskStatus);
 }
 
 function handleDeleteTask() {
@@ -70,14 +85,29 @@ function deleteTask(id) {
     });
 }
 
+//PUT route to change status of task from true->false or false->true
+function completeTask(id, status) {
+  $.ajax({
+    type: 'PUT',
+    url: `/todo/status/${id}`,
+    data: { status: status },
+  })
+    .then(() => {
+      getTasks();
+    })
+    .catch((err) => {
+      console.log(err);
+      alert('Issue updating');
+    });
+}
 function render(response) {
   $('.js-tasks').empty();
   for (let task of response) {
     $('.js-tasks').append(
       `<tr>
         <td>${task.task}</td>
-        <td><button>DONE</button></td>
-        <td><button class="js-delete" data-id="${task.id}">DELETE</button></td>
+        <td><button class="js-completeBtn" data-status="${task.status}" data-id="${task.id}">DONE</button></td>
+        <td><button class="js-deleteBtn" data-id="${task.id}">DELETE</button></td>
       </tr>`
     );
   }
