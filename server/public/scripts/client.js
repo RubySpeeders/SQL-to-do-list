@@ -106,7 +106,7 @@ function render(response) {
       $('.js-tasks').append(
         `<tr class="js-tr">
           <td class="js-tdTask strikeThrough">${task.task}</td>
-          <td><button class="js-completeBtn" data-status="${task.status}" data-id="${task.id}">NOT DONE!</button></td>
+          <td><button class="js-completeBtn btnColour" data-status="${task.status}" data-id="${task.id}">INCOMPLETE</button></td>
           <td><button class="js-deleteBtn" data-id="${task.id}">DELETE</button></td>
       </tr>`
       );
@@ -114,7 +114,7 @@ function render(response) {
       $('.js-tasks').append(
         `<tr class="js-tr">
         <td class="js-tdTask">${task.task}</td>
-        <td><button class="js-completeBtn" data-status="${task.status}" data-id="${task.id}">DONE</button></td>
+        <td><button class="js-completeBtn" data-status="${task.status}" data-id="${task.id}">COMPLETED</button></td>
         <td><button class="js-deleteBtn" data-id="${task.id}">DELETE</button></td>
       </tr>`
       );
