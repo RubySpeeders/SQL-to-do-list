@@ -4,10 +4,14 @@ body {
   font-family: 'Cabin', serif;
 }
 
+h2 {
+  text-transform: uppercase;
+}
+
 .strikeThrough {
   text-decoration: line-through;
 }
 
 .btnColour {
-  background-color: blue;
+  background-color: #31e78c;
 }
