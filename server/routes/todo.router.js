@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 //GET route (gets list of tasks from db to client)
 router.get('/', (req, res) => {
-  const queryText = 'SELECT * FROM "todo";';
+  const queryText = 'SELECT * FROM "todo" ORDER BY "id";';
 
   pool
     .query(queryText)
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 //POST route (takes the input from client and inserts task into db. then GET to give list of tasks from db to client)
 router.post('/', (req, res) => {
   const todoData = req.body;
-  const queryText = `INSERT INTO "todo" ("task", "status")
+  const queryText = `INSERT INTO "todo" ("task", "status") 
     VALUES ($1, 'false');`;
 
   const queryArray = [todoData.task];
